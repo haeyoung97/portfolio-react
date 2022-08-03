@@ -1,11 +1,23 @@
+import React from "react";
+import { Switch, Route } from 'react-router';
+import { BrowserRouter as Router } from 'react-router-dom';
 
+import { Provider } from './context';
 
-function App() {
-  return (
-    <div>
-      포트폴리오 생성
-    </div>
-  );
-}
+// Routes
+import routes from './routes';
+
+const App = () => (
+    <Provider>
+        <Router>
+            <Switch>
+                {routes.map((route, index) => (
+                    <Route key={index} {...route} />
+                ))}
+            </Switch>
+        </Router>
+    </Provider>
+);
 
 export default App;
+

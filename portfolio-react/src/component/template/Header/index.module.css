@@ -1,0 +1,64 @@
+.container {
+    width: 100%;
+    height: 110px;
+    background-color: skyblue;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    top: 0;
+    z-index: 99;
+}
+
+.content {
+    width: 1200px;
+    height: inherit;
+    display: flex;
+    align-items: center;
+}
+
+.menuNav {
+    display: flex;
+}
+
+.menuNav .menuItem {
+    width: fit-content;
+    height: 19px;
+    font-size: 15px;
+    color: #404040;
+    margin-right: 30px;
+    letter-spacing: -0.3px;
+    cursor: pointer;
+}
+
+
+.signBtns {
+    display: flex;
+    margin: 0 0 0 auto;
+}
+
+.signBtns div {
+    width: 53px;
+    height: 24px;
+    font-size: 13px;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+    line-height: 24px;
+    margin-left: 10px;
+}
+
+.signBtns .signupBtn {
+    width: 64px;
+    height: 24px;
+    line-height: 24px;
+    color: #000000;
+}
+
+.signBtns .mypageBtn {
+    width: 80px;
+    height: 24px;
+    line-height: 24px;
+    border: solid 1px #000000;
+    box-sizing: border-box;
+    color: #000000;
+}
