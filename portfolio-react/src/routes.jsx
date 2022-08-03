@@ -11,7 +11,7 @@ export const routes = [
         single_yn: 'N'
     },
     {
-        path: '/login',
+        path: '/module',
         exact: true,
         strict: false,
         component: RootView,

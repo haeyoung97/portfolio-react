@@ -4,11 +4,14 @@ import React from "react";
 import styles from './index.module.css';
 
 const index = (props) => {
+    const {history} = props;
 
     return (
         <div className={styles.container}>
             <div className={styles.content}>
-                <h3>My React Portfolio</h3>
+                <button onClick={() => history.push("/module")}>
+                    <h3>My React Portfolio</h3>
+                </button>
             </div>
         </div>
     )

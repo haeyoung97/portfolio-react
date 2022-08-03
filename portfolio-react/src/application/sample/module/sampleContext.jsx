@@ -1,11 +1,11 @@
 import React, { createContext, useReducer, useContext } from 'react';
-import * as api from './common/context/api'
+import * as api from '../../../common/context/api'
 import {
     createAsyncDispatcher
-} from './common/context/actionHandler';
+} from '../../../common/context/actionHandler';
 import {
     createAsyncHandler
-} from './common/context/reducerHandler';
+} from '../../../common/context/reducerHandler';
 
 const loc = "application/sample/module/CommentContext";
 
@@ -13,10 +13,7 @@ const StateContext = createContext(null);
 const DispatchContext = createContext(null);
 
 const initialState = {
-    // INIT을 통해 주입받는 데이터
-
-    // application 데이터
-    sample: {
+    action: {
         loading: false,
         data: null,
         count: 0,
@@ -25,18 +22,27 @@ const initialState = {
 };
 
 // ACTION 정의
-export const getAction = (dispatch, state, params) => {
-    if (state.cmnts.loading) return; // 이미 불러오는 중이면 스킵
-    SAMPLE_ACTION_API(dispatch, params);
+export const callAPI = (dispatch, state, params) => {
+    if (state.action.loading) return; // 이미 불러오는 중이면 스킵
+    ACTION_CALL_API(dispatch, params);
 }
+
 // DISPATCH 정의
-const SAMPLE_ACTION_API = createAsyncDispatcher('SAMPLE_ACTION_API', 'eSAMPLE_ACTION_API', api.get);
+const ACTION_CALL_API = createAsyncDispatcher('ACTION_CALL_API', 'eACTION_CALL_API', api.get);
 
 // REDUCER 정의
 function reducer(state, action) {
     switch (action.type) {
         case 'INIT':
             return Object.assign(state, action.data)
+        case 'ACTION_CALL_API':
+        case 'ACTION_CALL_API_SUCCESS':
+        case 'ACTION_CALL_API_ERROR':
+            return createAsyncHandler('ACTION_CALL_API', 'action', (data) => {
+                if (data?.result)
+                    return {data: data.result, count: data.count}
+                return null
+            })(state, action);
         default:
             throw new Error(`${loc} :: Unhanded action type: ${action.type}`);
     }

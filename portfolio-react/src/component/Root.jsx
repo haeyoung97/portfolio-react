@@ -8,6 +8,7 @@ import Footer from '../component/template/Footer';
 
 // Containers
 import Main from './page/Main';
+import Sample from '../application/sample'
 
 
 class RootView extends React.Component {
@@ -24,10 +25,8 @@ class RootView extends React.Component {
             <div className={"container"}>
                 {location.pathname !== '/login' && <Header {...this.props} logout={this.logout} />}
                 <div className={"content"}>
-                    <Route path={'/'} exact={true} strict={false} {...this.props} >
-                        <Main />
-                    </Route>
-                    <Route path={'/login'} component={Main} exact={true} strict={false} {...this.props} />
+                    <Route path={'/'} component={Main} exact={true} strict={false} {...this.props} />
+                    <Route path={'/module'} component={Sample} exact={true} strict={false} {...this.props} />
                 </div>
 
                 {location.pathname !== '/login' && <Footer {...this.props} />}
