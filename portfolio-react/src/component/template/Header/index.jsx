@@ -4,11 +4,12 @@ import React from "react";
 import styles from './index.module.css';
 
 const index = (props) => {
+    const {history} = props;
 
     return (
         <div className={styles.container}>
             <div className={styles.content}>
-                <div className={styles.menuNav}>
+                <div className={styles.menuNav} onClick={() => history.push('/')}>
                     <h1>Hello! I'm Haeyoung :)</h1>
                 </div>
                 <div className={styles.signBtns}>

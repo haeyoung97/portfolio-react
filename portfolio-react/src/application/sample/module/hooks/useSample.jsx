@@ -1,7 +1,8 @@
 /* eslint-disable */
-import { useState } from "react";
+import {useEffect} from "react";
 import {
-    callAPI,
+    getSampleDetail,
+    getSampleList,
     useContextDispatch,
     useContextState,
 } from "../sampleContext";
@@ -10,10 +11,17 @@ export default function (props) {
     const state = useContextState();
     const dispatch = useContextDispatch();
 
-    const [value, setValue] = useState("")
+    useEffect(() => {
+        // Props 중 필수값
+        dispatch({type: "INIT", data: props})
+        fetchSampleList()
+    }, []);
 
+    const fetchSampleList = () => {
+        getSampleList(dispatch, state);
+    };
 
-    const fetchAction = () => callAPI(dispatch, state,{});
+    const fetchSampleDetail = (sample_no) => getSampleDetail(dispatch, state, {sample_no});
 
-    return {state, value, fetchAction};
+    return {state, fetchSampleList, fetchSampleDetail};
 }

@@ -1,20 +1,46 @@
 /* eslint-disable */
-import React from "react";
+import React, {useEffect, useState} from "react";
 
 // Styles
 import styles from "./index.module.css";
 
-// Hook
-import useSample from "../../module/hooks/useSample";
-
 const index = (props) => {
-    const {state, value, fetchAction} = useSample(props);
+    const {state, item, fetchSampleDetail} = props;
+    const {data: detail, loading: sample_loading, error: sample_error, count: sample_count} = state.sample_detail;
+
+    const [isOpen, setIsOpen] = useState(false);
+
+    useEffect(() => {
+        fetchSampleDetail(item.sample_no)
+    }, [])
 
     return (
-        <div className={styles.sampleBox}>
-            data 렌더링
-        </div>
-    )
+        <>
+            <div
+                className={styles.sampleRow}
+                key={`index_${item.sample_no}`}
+                onClick={() => setIsOpen(!isOpen)}
+            >
+                <div className={styles.rowTitle}>{item.sample_sj}</div>
+                <div className={styles.rowDesc}>{item.reg_dt}</div>
+            </div>
+            {isOpen && (
+                <div
+                    className={styles.sampleContent}
+                    key={`index_${item.sample_no}`}
+                    onClick={() => setIsOpen(!isOpen)}
+                >
+                    {sample_loading ? <div>로딩중..</div> : null}
+                    {detail?.sample_cont && (
+                        <div className={styles.content}>
+                            <span>답변 :)</span><br/>
+                            {item.sample_cont}
+                        </div>
+                    )}
+                </div>
+            )}
+        </>
+    );
 };
 
 export default index;

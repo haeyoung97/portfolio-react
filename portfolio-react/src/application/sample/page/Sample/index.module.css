@@ -1,8 +1,35 @@
-.container {
+.sampleContainer {
     width: 1200px;
-    height: calc(100vh - 283px);
+    min-height: calc(100vh - 283px);
     margin: 0 auto;
     box-sizing: border-box;
     padding: 10px;
-    background-color: #ffffff;
+}
+
+.sampleHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 25px;
+}
+
+.sampleHeader button {
+    background-color: skyblue;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    height: fit-content;
+    font-weight: bold;
+    color: navy;
+    cursor: pointer;
+}
+
+.sampleInfo {
+    padding-top: 15px;
+    margin-bottom: 15px;
+}
+
+.sampleInfo span {
+    color: #1d75b3;
+    font-weight: bold;
 }
